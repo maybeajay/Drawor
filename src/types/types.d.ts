@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from "react"
 
 type Draw = {
     ctx: CanvasRenderingContext2D
