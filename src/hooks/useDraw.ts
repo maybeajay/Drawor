@@ -7,7 +7,7 @@ export const useDraw = (onDraw: ({ ctx, currentPoint, prevPoint }: Draw) => void
   const prevPoint = useRef<null | Point>(null)
 
   const onMouseDown = () => setMouseDown(true)
-  const onTouchStart = (e: TouchEvent) => {
+  const onTouchStart = () => {
     setMouseDown(true)
   }
 
