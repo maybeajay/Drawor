@@ -68,7 +68,7 @@ function CanvasComponent() {
         <ColorPicker
           setcurrentColor={setcurrentColor}
         />
-        <StrokeSelector currentStroke={currentStroke} setcurrentStroke={setcurrentStroke}/>
+        <StrokeSelector  setcurrentStroke={setcurrentStroke}/>
       </div>
     </div>
   );
