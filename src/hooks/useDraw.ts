@@ -1,10 +1,10 @@
-import { Draw, Point } from '@/types/types'
+
 import { useEffect, useRef, useState } from 'react'
 
 export const useDraw = (onDraw: ({ ctx, currentPoint, prevPoint }: Draw) => void) => {
   const [mouseDown, setMouseDown] = useState(false)
   const [isCampusEmpty, setisCampusEmpty] = useState(true)
-  let canvasRef = useRef<HTMLCanvasElement>(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
   const prevPoint = useRef<null | Point>(null)
 
   const onMouseDown = () => setMouseDown(true)

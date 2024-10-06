@@ -2,7 +2,6 @@
 import { useDraw } from "@/hooks/useDraw";
 import ColorPicker from "./ColorPicker";
 import { useState } from "react";
-import { Draw } from "@/types/types";
 import StrokeSelector from "./StrokeSelector";
 
 function CanvasComponent() {
