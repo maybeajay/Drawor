@@ -12,7 +12,7 @@ function CanvasComponent() {
   function drawLine({ prevPoint, currentPoint, ctx }: Draw) {
     const { x: curX, y: currY } = currentPoint;
     const lineColor = currentColor;
-    let startPoint = prevPoint ?? currentPoint;
+    const startPoint = prevPoint ?? currentPoint;
     ctx.beginPath();
     ctx.lineWidth = currentStroke;
     ctx.strokeStyle = lineColor;
@@ -67,7 +67,6 @@ function CanvasComponent() {
           </button>}
         </div>
         <ColorPicker
-          currentColor={currentColor}
           setcurrentColor={setcurrentColor}
         />
         <StrokeSelector currentStroke={currentStroke} setcurrentStroke={setcurrentStroke}/>
