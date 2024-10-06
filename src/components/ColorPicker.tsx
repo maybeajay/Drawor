@@ -1,11 +1,10 @@
 import React, { Dispatch, SetStateAction, useState } from 'react'
 
 type Props = {
-    currentColor: string,
     setcurrentColor: Dispatch<SetStateAction<string>>
 }
 
-function ColorPicker({currentColor, setcurrentColor}: Props) {
+function ColorPicker({setcurrentColor}: Props) {
     const handleColorPick = (e:React.ChangeEvent<HTMLInputElement>)=>{
         setcurrentColor(e.target.value);
     }
