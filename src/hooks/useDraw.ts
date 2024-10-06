@@ -1,9 +1,10 @@
+import { Draw, Point } from '@/types/types'
 import { useEffect, useRef, useState } from 'react'
 
 export const useDraw = (onDraw: ({ ctx, currentPoint, prevPoint }: Draw) => void) => {
   const [mouseDown, setMouseDown] = useState(false)
-
-  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [isCampusEmpty, setisCampusEmpty] = useState(true)
+  let canvasRef = useRef<HTMLCanvasElement>(null)
   const prevPoint = useRef<null | Point>(null)
 
   const onMouseDown = () => setMouseDown(true)
@@ -15,7 +16,8 @@ export const useDraw = (onDraw: ({ ctx, currentPoint, prevPoint }: Draw) => void
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    setisCampusEmpty(true)
   }
 
   useEffect(() => {
@@ -38,7 +40,7 @@ export const useDraw = (onDraw: ({ ctx, currentPoint, prevPoint }: Draw) => void
       const rect = canvas.getBoundingClientRect()
       const x = e.clientX - rect.left
       const y = e.clientY - rect.top
-
+      setisCampusEmpty(false)
       return { x, y }
     }
 
@@ -58,5 +60,5 @@ export const useDraw = (onDraw: ({ ctx, currentPoint, prevPoint }: Draw) => void
     }
   }, [onDraw])
 
-  return { canvasRef, onMouseDown, clear }
+  return { canvasRef, onMouseDown, clear, isCampusEmpty }
 }
