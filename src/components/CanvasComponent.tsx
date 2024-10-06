@@ -8,6 +8,7 @@ function CanvasComponent() {
   const { canvasRef, onMouseDown, clear, isCampusEmpty } = useDraw(drawLine);
   const [currentColor, setcurrentColor] = useState<string>("#000");
   const [currentStroke, setcurrentStroke] = useState<number>(5);
+
   function drawLine({ prevPoint, currentPoint, ctx }: Draw) {
     const { x: curX, y: currY } = currentPoint;
     const lineColor = currentColor;
@@ -49,8 +50,9 @@ function CanvasComponent() {
           height={750}
           className="border border-black"
           onMouseDown={onMouseDown}
+          onTouchStart={onMouseDown}
         />
-        <div className="flex flex-row gap-5">
+        <div className="flex flex-row gap-5 items-center justify-center">
           <button
             className="text-violet-700 hover:text-white border border-purple-300 hover:bg-violet-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
             onClick={clear}
@@ -68,7 +70,7 @@ function CanvasComponent() {
         <ColorPicker
           setcurrentColor={setcurrentColor}
         />
-        <StrokeSelector currentStroke={currentStroke} setcurrentStroke={setcurrentStroke}/>
+        <StrokeSelector setcurrentStroke={setcurrentStroke}/>
       </div>
     </div>
   );

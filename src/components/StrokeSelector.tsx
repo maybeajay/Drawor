@@ -1,10 +1,9 @@
 import React, { Dispatch, SetStateAction } from 'react'
 
 type Props = {
-    currentStroke: number,
     setcurrentStroke: Dispatch<SetStateAction<number>>
 }
-function StrokeSelector({setcurrentStroke, currentStroke}: Props) {
+function StrokeSelector({setcurrentStroke}: Props) {
     const strokeHandler = (e:React.ChangeEvent<HTMLInputElement>) =>{
         setcurrentStroke(+e.target.value);
         console.log(e.target.value)
