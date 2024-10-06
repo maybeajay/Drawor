@@ -3,19 +3,18 @@ import { useDraw } from "@/hooks/useDraw";
 import ColorPicker from "./ColorPicker";
 import { useState } from "react";
 import { Draw } from "@/types/types";
+import StrokeSelector from "./StrokeSelector";
 
 function CanvasComponent() {
   const { canvasRef, onMouseDown, clear, isCampusEmpty } = useDraw(drawLine);
   const [currentColor, setcurrentColor] = useState<string>("#000");
-  const [imageSource, setimageSource] = useState<string | undefined>("");
+  const [currentStroke, setcurrentStroke] = useState<number>(5);
   function drawLine({ prevPoint, currentPoint, ctx }: Draw) {
     const { x: curX, y: currY } = currentPoint;
     const lineColor = currentColor;
-    const lineWidth = 5;
-
     let startPoint = prevPoint ?? currentPoint;
     ctx.beginPath();
-    ctx.lineWidth = lineWidth;
+    ctx.lineWidth = currentStroke;
     ctx.strokeStyle = lineColor;
     ctx.moveTo(startPoint.x, startPoint.y);
     ctx.lineTo(curX, currY);
@@ -27,7 +26,6 @@ function CanvasComponent() {
   }
   
   const handleDownloadAsImage = () => {
-    setimageSource(canvasRef?.current?.toDataURL());
     if (canvasRef?.current) {
       const base64Image = canvasRef.current.toDataURL();
   
@@ -64,7 +62,6 @@ function CanvasComponent() {
          {!isCampusEmpty && <button
             className="text-violet-700 hover:text-white border border-purple-300 hover:bg-violet-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
             onClick={handleDownloadAsImage}
-            disabled={canvasRef?.current?.toDataURL() != undefined  ? false : true}
           >
             Download Image
           </button>}
@@ -73,6 +70,7 @@ function CanvasComponent() {
           currentColor={currentColor}
           setcurrentColor={setcurrentColor}
         />
+        <StrokeSelector currentStroke={currentStroke} setcurrentStroke={setcurrentStroke}/>
       </div>
     </div>
   );

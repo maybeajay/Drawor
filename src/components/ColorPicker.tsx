@@ -1,4 +1,3 @@
-import useColorPicker from '@/hooks/useColorPicker';
 import React, { Dispatch, SetStateAction, useState } from 'react'
 
 type Props = {
