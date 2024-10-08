@@ -44,7 +44,7 @@ export const useDraw = (onDraw: ({ ctx, currentPoint, prevPoint }: Draw) => void
       if (!ctx || !currentPoint) return
       ctx.fillStyle = "orange"
 
-      onDraw({ ctx, currentPoint, prevPoint: prevPoint.current })
+      onDraw({ ctx, currentPoint, prevPoint: prevPoint.current})
       prevPoint.current = currentPoint
       e.preventDefault() // Prevent scrolling while drawing
     }
